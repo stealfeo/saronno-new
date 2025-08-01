@@ -11,7 +11,7 @@ const supabase = createClient(
 type Props = {
   onSelectCategory: (category: string | null) => void
   onSearch: (query: string) => void
-  searchValue: string // ✅ nuovo valore dal parent
+  searchValue: string
 }
 
 export default function CategoryNavbar({ onSelectCategory, onSearch, searchValue }: Props) {
@@ -46,6 +46,49 @@ export default function CategoryNavbar({ onSelectCategory, onSearch, searchValue
 
   return (
     <nav className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200">
+
+      {/* ✅ Mobile navbar con hamburger */}
+      <div className="flex md:hidden justify-end items-center gap-2 px-4 py-3">
+        <span className="font-bold text-brand-cyan">Categorie</span>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 rounded-md bg-brand-cyan text-white"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
+
+      {/* ✅ Menu a tendina mobile */}
+      <div
+        className={`md:hidden bg-white border-t border-gray-200 transition-all duration-300 overflow-hidden ${
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="flex flex-col px-4 pb-3 gap-3">
+          <button onClick={() => handleClick(null)} className={buttonClasses(null)}>
+            Tutte
+          </button>
+          {categories.map((cat) => (
+            <button key={cat} onClick={() => handleClick(cat)} className={buttonClasses(cat)}>
+              {cat}
+            </button>
+          ))}
+
+          {/* ✅ Barra ricerca in mobile */}
+          <div className="flex items-center bg-gray-100 rounded-full px-3 py-1 mt-3">
+            <Search className="w-4 h-4 text-gray-500" />
+            <input
+              type="text"
+              placeholder="Cerca articoli..."
+              value={searchValue}
+              onChange={(e) => onSearch(e.target.value)}
+              className="bg-transparent outline-none px-2 text-sm w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ Desktop navbar */}
       <div className="hidden md:flex justify-end items-center gap-6 px-4 py-3 flex-wrap">
         <button onClick={() => handleClick(null)} className={buttonClasses(null)}>
           Tutte
@@ -56,7 +99,6 @@ export default function CategoryNavbar({ onSelectCategory, onSearch, searchValue
           </button>
         ))}
 
-        {/* ✅ Input ricerca che usa searchValue */}
         <div className="flex items-center bg-gray-100 rounded-full px-3 py-1 ml-4">
           <Search className="w-4 h-4 text-gray-500" />
           <input
