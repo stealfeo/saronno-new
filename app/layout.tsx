@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "L'Altra Saronno",
   description: "Periodico di attualità, cultura, politica e opinione",
   icons: {
-    icon: '/images/logo.png',
+    icon: '/images/logo-testata.png',
   }
 }
 
