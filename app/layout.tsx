@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import CookieBanner from '../components/CookieBanner'
 
 export const metadata: Metadata = {
-  title: "L&apos;Altra Saronno",
+  title: "L'Altra Saronno",
   description: "Periodico di attualità, cultura, politica e opinione",
   icons: {
     icon: '/images/logo.png',
