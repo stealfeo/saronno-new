@@ -53,7 +53,7 @@ export default function Home() {
     const { data, error } = await supabase
     .from('articles')
     .select('*')
-    .order('order_index', { ascending: true, nullsFirst: false }) // ordina per ordine
+    .order('order_index', { ascending: true, nullsFirst: false }) // ordina per ordine 
     .order('created_at', { ascending: false }) // se due articoli hanno lo stesso ordine, ordina per data
 
     if (!error && data) {
