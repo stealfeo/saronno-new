@@ -30,13 +30,22 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
 
   const fetchArticles = async (cat: string | null = null) => {
-    setLoading(true)
-    let query = supabase.from('articles').select('*').order('created_at', { ascending: false })
-    if (cat) query = query.eq('category', cat)
-    const { data, error } = await query
-    if (!error && data) setArticles(data as Article[])
-    setLoading(false)
+  setLoading(true)
+
+  let query = supabase
+    .from('articles')
+    .select('*')
+    .order('order_index', { ascending: true, nullsFirst: false }) // ✅ ordina prima per posizione manuale
+    .order('created_at', { ascending: false }) // ✅ fallback per articoli con stesso ordine
+
+  if (cat) query = query.eq('category', cat)
+
+  const { data, error } = await query
+
+  if (!error && data) setArticles(data as Article[])
+  setLoading(false)
   }
+
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query)
