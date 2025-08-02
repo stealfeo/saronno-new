@@ -51,9 +51,10 @@ export default function Home() {
     const lower = q.toLowerCase()
 
     const { data, error } = await supabase
-      .from('articles')
-      .select('*')
-      .order('created_at', { ascending: false })
+    .from('articles')
+    .select('*')
+    .order('order_index', { ascending: true, nullsFirst: false }) // ordina per ordine
+    .order('created_at', { ascending: false }) // se due articoli hanno lo stesso ordine, ordina per data
 
     if (!error && data) {
       const filtered = data.filter((a: Article) => {
