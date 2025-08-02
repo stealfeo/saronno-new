@@ -11,7 +11,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'ihexdbticbojrpnoauco.supabase.co', // se usi immagini da Supabase Storage
+        hostname: 'ihexdbticbojrpnoauco.supabase.co', 
       }
     ],
   },
