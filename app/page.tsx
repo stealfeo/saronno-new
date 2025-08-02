@@ -84,7 +84,7 @@ export default function Home() {
           className="flex items-center gap-2 bg-brand-cyan hover:bg-brand-orange text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-colors duration-200"
         >
           <Download className="w-5 h-5" />
-          Scarica il quotidiano in PDF
+          Scarica il giornale in PDF
         </a>
       </div>
 
